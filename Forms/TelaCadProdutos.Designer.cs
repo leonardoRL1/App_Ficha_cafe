@@ -39,9 +39,21 @@
             btnEditar = new Button();
             btnAdicionar = new Button();
             panel1 = new Panel();
+            labelTitulo = new Label();
+            labelProdEstoque = new Label();
+            labelProdPreco = new Label();
+            labelProdNome = new Label();
+            checkControlaEstoque = new CheckBox();
+            txtEstoque = new TextBox();
+            txtPreco = new TextBox();
+            txtNome = new TextBox();
+            btnConfirmar = new Button();
             produtoBindingSource = new BindingSource(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            contextMenuStrip2 = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)produtoBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -57,21 +69,17 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dataGridView1.Location = new Point(124, 0);
+            dataGridView1.Location = new Point(182, 0);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
             dataGridViewCellStyle2.BackColor = SystemColors.InactiveCaption;
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ShowRowErrors = false;
-            dataGridView1.Size = new Size(544, 449);
+            dataGridView1.Size = new Size(418, 449);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            dataGridView1.CellContentDoubleClick += dataGridView1_CellContentDoubleClick;
-            dataGridView1.RowValidated += dataGridView1_RowValidated;
-            dataGridView1.RowHeadersVisible = false;
-
             // 
             // tableLayoutPanel1
             // 
@@ -117,6 +125,7 @@
             btnDeletar.TabIndex = 1;
             btnDeletar.Text = "Remover\r\nProduto";
             btnDeletar.UseVisualStyleBackColor = false;
+            btnDeletar.Click += btnDeletar_Click;
             // 
             // btnEditar
             // 
@@ -143,19 +152,122 @@
             btnAdicionar.TabIndex = 3;
             btnAdicionar.Text = "Adicionar\r\nProduto";
             btnAdicionar.UseVisualStyleBackColor = false;
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.InactiveCaption;
+            panel1.Controls.Add(labelTitulo);
+            panel1.Controls.Add(labelProdEstoque);
+            panel1.Controls.Add(labelProdPreco);
+            panel1.Controls.Add(labelProdNome);
+            panel1.Controls.Add(checkControlaEstoque);
+            panel1.Controls.Add(txtEstoque);
+            panel1.Controls.Add(txtPreco);
+            panel1.Controls.Add(txtNome);
+            panel1.Controls.Add(btnConfirmar);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(118, 450);
+            panel1.Size = new Size(133, 450);
             panel1.TabIndex = 2;
             panel1.Visible = false;
+            // 
+            // labelTitulo
+            // 
+            labelTitulo.AutoSize = true;
+            labelTitulo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelTitulo.Location = new Point(47, 37);
+            labelTitulo.Name = "labelTitulo";
+            labelTitulo.Size = new Size(38, 15);
+            labelTitulo.TabIndex = 6;
+            labelTitulo.Text = "Titulo";
+            // 
+            // labelProdEstoque
+            // 
+            labelProdEstoque.AutoSize = true;
+            labelProdEstoque.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdEstoque.Location = new Point(26, 203);
+            labelProdEstoque.Name = "labelProdEstoque";
+            labelProdEstoque.Size = new Size(75, 15);
+            labelProdEstoque.TabIndex = 5;
+            labelProdEstoque.Text = "Estoque Qnt.";
+            // 
+            // labelProdPreco
+            // 
+            labelProdPreco.AutoSize = true;
+            labelProdPreco.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdPreco.Location = new Point(47, 140);
+            labelProdPreco.Name = "labelProdPreco";
+            labelProdPreco.Size = new Size(37, 15);
+            labelProdPreco.TabIndex = 4;
+            labelProdPreco.Text = "Preço";
+            // 
+            // labelProdNome
+            // 
+            labelProdNome.AutoSize = true;
+            labelProdNome.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdNome.Location = new Point(47, 81);
+            labelProdNome.Name = "labelProdNome";
+            labelProdNome.Size = new Size(40, 15);
+            labelProdNome.TabIndex = 3;
+            labelProdNome.Text = "Nome";
+            // 
+            // checkControlaEstoque
+            // 
+            checkControlaEstoque.AutoSize = true;
+            checkControlaEstoque.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkControlaEstoque.Location = new Point(12, 270);
+            checkControlaEstoque.Name = "checkControlaEstoque";
+            checkControlaEstoque.Size = new Size(116, 19);
+            checkControlaEstoque.TabIndex = 2;
+            checkControlaEstoque.Text = "Controla Estoque";
+            checkControlaEstoque.UseVisualStyleBackColor = true;
+            // 
+            // txtEstoque
+            // 
+            txtEstoque.Location = new Point(12, 221);
+            txtEstoque.Name = "txtEstoque";
+            txtEstoque.Size = new Size(112, 23);
+            txtEstoque.TabIndex = 1;
+            // 
+            // txtPreco
+            // 
+            txtPreco.Location = new Point(12, 158);
+            txtPreco.Name = "txtPreco";
+            txtPreco.Size = new Size(112, 23);
+            txtPreco.TabIndex = 1;
+            // 
+            // txtNome
+            // 
+            txtNome.Location = new Point(12, 99);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(112, 23);
+            txtNome.TabIndex = 1;
+            // 
+            // btnConfirmar
+            // 
+            btnConfirmar.Location = new Point(26, 320);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(75, 23);
+            btnConfirmar.TabIndex = 0;
+            btnConfirmar.Text = "Confirmar";
+            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // produtoBindingSource
             // 
             produtoBindingSource.DataSource = typeof(Ficha_cafe.Models.Produto);
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // contextMenuStrip2
+            // 
+            contextMenuStrip2.Name = "contextMenuStrip2";
+            contextMenuStrip2.Size = new Size(61, 4);
             // 
             // TelaCadProdutos
             // 
@@ -166,13 +278,14 @@
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(dataGridView1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaCadProdutos";
-            StartPosition = FormStartPosition.Manual;
             Text = "TelaCadProdutos";
-            Load += TelaCadProdutos_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)produtoBindingSource).EndInit();
             ResumeLayout(false);
             }
@@ -197,5 +310,16 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private BindingSource produtoBindingSource;
+        private TextBox txtNome;
+        private Button btnConfirmar;
+        private ContextMenuStrip contextMenuStrip1;
+        private ContextMenuStrip contextMenuStrip2;
+        private TextBox txtPreco;
+        private CheckBox checkControlaEstoque;
+        private TextBox txtEstoque;
+        private Label labelProdNome;
+        private Label labelProdEstoque;
+        private Label labelProdPreco;
+        private Label labelTitulo;
         }
     }

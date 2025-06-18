@@ -1,36 +1,18 @@
 ﻿using Ficha_cafe;
 using Ficha_cafe.Models;
 using GFCafe.Repository;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GFCafe.Forms
-{
+    {
     public partial class TelaCadProdutos : Form
         {
-        private IEnumerable<Produto> produtosList;
+        private BindingList<Produto> produtosList;
+
         public TelaCadProdutos()
             {
             InitializeComponent();
             CarregarGrid();
-            //this.FormClosed += Form_FormClosed;
-            }
-
-        private void Form_FormClosed(object sender, FormClosedEventArgs e)
-            {
-            Application.Exit();
-            }
-
-        private void TelaCadProdutos_Load(object sender, EventArgs e)
-            {
-
             }
 
         private void CarregarGrid()
@@ -40,75 +22,126 @@ namespace GFCafe.Forms
             dataGridView1.DataSource = produtosList;
             dataGridView1.Columns["Id"].Width = 30;
             dataGridView1.Columns["Nome"].Width = 150;
-            dataGridView1.Columns["Preco"].Width = 50;
-            dataGridView1.Columns["Estoque"].Width = 50;
-
-            if (dataGridView1.Columns["Id"] != null)
-                {
-                dataGridView1.Columns["Id"].ReadOnly = true;
-                }
-            }
-
-        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
-            {
-            if (dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.DataBoundItem is Produto produto)
-                {
-                var update = new ProdutoRepository();
-                update.UpdateProduto(produto);
-                }
-            }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-            {
-
+            dataGridView1.Columns["Preco"].Width = 60;
+            dataGridView1.Columns["Estoque"].Width = 60;
             }
 
         private void button1_Click(object sender, EventArgs e) // botao voltar menu
             {
-            Ficha_cafe.Menu menu = new Ficha_cafe.Menu();
+            Menu menu = new Menu();
             this.Close();
             }
 
-        private int getIdRow(int rowIndex)
-            {
-            if (rowIndex >= 0 && rowIndex < dataGridView1.Rows.Count)
-                {
-                DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                var idValue = row.Cells["Id"].Value;
-                if (idValue != null && int.TryParse(idValue.ToString(), out int id))
-                    {
-                    return id;
-                    }
-                }
-            return -1; // ou lance uma exceção, se preferir
-            }
-
-        #region Editar Produto
         private int getIdSelecionado() => (int)dataGridView1.CurrentRow.Cells["Id"].Value;
-        private void editarProduto() => editarProduto(getIdSelecionado());
-        private void btnEditar_Click(object sender, EventArgs e) => editarProduto();
-        private void editarProduto(int id)
+
+        private void MostrarProduto() => MostrarProduto(getIdSelecionado());
+
+        private void MostrarProduto(int id)
             {
             if (id <= 0) return;
-            MessageBox.Show($"Editar funcionando, id do produto: {id}");
+            var produto = produtosList.FirstOrDefault(p => p.Id == id);
+
+            txtNome.Text = produto.Nome;
+            txtPreco.Text = produto.Preco.ToString("F2");
+            txtEstoque.Text = produto.Estoque.ToString();
+            checkControlaEstoque.Checked = produto.ControlaEstoque;
+
+            panel1.Visible = !panel1.Visible;
             }
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private bool PermiteEditarTxt()
             {
-            editarProduto();
+            bool permite;
+            if (labelTitulo.Text == "Editar" || labelTitulo.Text == "Adicionar")
+                {
+                txtNome.ReadOnly = false;
+                txtPreco.ReadOnly = false;
+                txtEstoque.ReadOnly = false;
+                checkControlaEstoque.Enabled = true;
+                permite = true;
+                }
+
+            else // Ultimo botao == "Excluir"
+                {
+                txtNome.ReadOnly = true;
+                txtPreco.ReadOnly = true;
+                txtEstoque.ReadOnly = true;
+                checkControlaEstoque.Enabled = false;
+                permite = false;
+                }
+
+            return permite;
             }
-        #endregion
 
-        private void DeletarLancamento(int id)
+        private void btnEditar_Click(object sender, EventArgs e)
             {
-            if (id <= 0) return;
-            MessageBox.Show("Editar funcionando");
+            labelTitulo.Text = "Editar";
+            PermiteEditarTxt();
+            MostrarProduto();
+
+            }
+        private void btnAdicionar_Click(object sender, EventArgs e)
+            {
+            labelTitulo.Text = "Adicionar";
+            PermiteEditarTxt();
+            panel1.Visible = !panel1.Visible;
+            }
+        private void btnDeletar_Click(object sender, EventArgs e)
+            {
+            labelTitulo.Text = "Excluir";
+            PermiteEditarTxt();
+            MostrarProduto();
             }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnConfirmar_Click(object sender, EventArgs e)
             {
+            if (!isValid()) return;
 
+            ProdutoRepository produtoRepository = new ProdutoRepository();
+
+            if (labelTitulo.Text == "Editar")
+                {
+                int id = getIdSelecionado();
+                var produto = produtosList.FirstOrDefault(p => p.Id == id);
+
+                produto.Nome = txtNome.Text;
+                produto.Preco = decimal.Parse(txtPreco.Text);
+                produto.Estoque = int.Parse(txtEstoque.Text);
+                produto.ControlaEstoque = checkControlaEstoque.Checked;
+
+                produtoRepository.UpdateProduto(produto);
+                }
+
+            else if (labelTitulo.Text == "Adicionar")
+                {
+                var novoProduto = new Produto
+                    {
+                    Nome = txtNome.Text,
+                    Preco = decimal.Parse(txtPreco.Text),
+                    Estoque = int.Parse(txtEstoque.Text),
+                    ControlaEstoque = checkControlaEstoque.Checked
+                    };
+
+                produtoRepository.CreateProduto(novoProduto);
+                }
+
+            else // ultimoBotao == "Excluir"
+                produtoRepository.DeleteProduto(getIdSelecionado());
+
+            panel1.Visible = false;
+            CarregarGrid();
+            }
+
+        private bool isValid()
+            {
+            if (string.IsNullOrWhiteSpace(txtNome.Text) ||
+                string.IsNullOrWhiteSpace(txtPreco.Text) ||
+                string.IsNullOrWhiteSpace(txtEstoque.Text))
+                {
+                MessageBox.Show("Preencha todos os campos!");
+                return false;
+                }
+            return true;
             }
         }
-
     }
