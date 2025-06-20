@@ -21,10 +21,5 @@ namespace GFCafe.Forms
             {
             Application.Exit();
             }
-
-        private void TelaRegistraMov_Load(object sender, EventArgs e)
-            {
-
-            }
         }
     }

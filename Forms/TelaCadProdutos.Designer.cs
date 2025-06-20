@@ -65,7 +65,7 @@
             dataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.BackgroundColor = Color.Sienna;
+            dataGridView1.BackgroundColor = SystemColors.InactiveCaption;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
@@ -102,8 +102,10 @@
             // 
             // btnBackMenu
             // 
-            btnBackMenu.BackColor = SystemColors.InactiveCaption;
+            btnBackMenu.BackColor = SystemColors.Window;
             btnBackMenu.Dock = DockStyle.Fill;
+            btnBackMenu.FlatAppearance.BorderSize = 0;
+            btnBackMenu.FlatStyle = FlatStyle.Flat;
             btnBackMenu.Location = new Point(0, 0);
             btnBackMenu.Margin = new Padding(0);
             btnBackMenu.Name = "btnBackMenu";
@@ -117,6 +119,8 @@
             // 
             btnDeletar.BackColor = Color.Sienna;
             btnDeletar.Dock = DockStyle.Fill;
+            btnDeletar.FlatAppearance.BorderSize = 0;
+            btnDeletar.FlatStyle = FlatStyle.Flat;
             btnDeletar.ForeColor = SystemColors.ButtonHighlight;
             btnDeletar.Location = new Point(0, 336);
             btnDeletar.Margin = new Padding(0);
@@ -131,6 +135,8 @@
             // 
             btnEditar.BackColor = Color.Sienna;
             btnEditar.Dock = DockStyle.Fill;
+            btnEditar.FlatAppearance.BorderSize = 0;
+            btnEditar.FlatStyle = FlatStyle.Flat;
             btnEditar.ForeColor = SystemColors.ButtonHighlight;
             btnEditar.Location = new Point(0, 112);
             btnEditar.Margin = new Padding(0);
@@ -143,8 +149,10 @@
             // 
             // btnAdicionar
             // 
-            btnAdicionar.BackColor = SystemColors.InactiveCaption;
+            btnAdicionar.BackColor = SystemColors.Window;
             btnAdicionar.Dock = DockStyle.Fill;
+            btnAdicionar.FlatAppearance.BorderSize = 0;
+            btnAdicionar.FlatStyle = FlatStyle.Flat;
             btnAdicionar.Location = new Point(0, 224);
             btnAdicionar.Margin = new Padding(0);
             btnAdicionar.Name = "btnAdicionar";
@@ -156,7 +164,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.InactiveCaption;
+            panel1.BackColor = Color.Sienna;
             panel1.Controls.Add(labelTitulo);
             panel1.Controls.Add(labelProdEstoque);
             panel1.Controls.Add(labelProdPreco);
@@ -177,6 +185,7 @@
             // 
             labelTitulo.AutoSize = true;
             labelTitulo.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelTitulo.ForeColor = SystemColors.ButtonHighlight;
             labelTitulo.Location = new Point(47, 37);
             labelTitulo.Name = "labelTitulo";
             labelTitulo.Size = new Size(38, 15);
@@ -187,6 +196,7 @@
             // 
             labelProdEstoque.AutoSize = true;
             labelProdEstoque.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdEstoque.ForeColor = SystemColors.ButtonHighlight;
             labelProdEstoque.Location = new Point(26, 203);
             labelProdEstoque.Name = "labelProdEstoque";
             labelProdEstoque.Size = new Size(75, 15);
@@ -197,6 +207,7 @@
             // 
             labelProdPreco.AutoSize = true;
             labelProdPreco.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdPreco.ForeColor = SystemColors.ButtonHighlight;
             labelProdPreco.Location = new Point(47, 140);
             labelProdPreco.Name = "labelProdPreco";
             labelProdPreco.Size = new Size(37, 15);
@@ -207,6 +218,7 @@
             // 
             labelProdNome.AutoSize = true;
             labelProdNome.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelProdNome.ForeColor = SystemColors.ButtonHighlight;
             labelProdNome.Location = new Point(47, 81);
             labelProdNome.Name = "labelProdNome";
             labelProdNome.Size = new Size(40, 15);
@@ -217,6 +229,7 @@
             // 
             checkControlaEstoque.AutoSize = true;
             checkControlaEstoque.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkControlaEstoque.ForeColor = SystemColors.ButtonHighlight;
             checkControlaEstoque.Location = new Point(12, 270);
             checkControlaEstoque.Name = "checkControlaEstoque";
             checkControlaEstoque.Size = new Size(116, 19);
@@ -273,13 +286,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Sienna;
+            BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(dataGridView1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "TelaCadProdutos";
             Text = "TelaCadProdutos";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

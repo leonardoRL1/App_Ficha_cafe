@@ -35,12 +35,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(800, 450);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaRegistraMov";
             StartPosition = FormStartPosition.Manual;
             Text = "TelaRegistraMov";
-            Load += TelaRegistraMov_Load;
             ResumeLayout(false);
             }
 

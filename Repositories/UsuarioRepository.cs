@@ -10,10 +10,10 @@ namespace GFCafe.Repository
 {
 public class UsuarioRepository
     {
-    public IEnumerable<Usuario> GetUsuarios()
+    public IEnumerable<Usuario> ReadUsuarios()
         {
         using var connection = MySqlConnectionFactory.Instance.CreateConnection();
-        return connection.Query<Usuario>("SELECT * FROM usuarios");
+        return connection.Query<Usuario>("SELECT * FROM tbl_usuarios");
         }
     }
 }

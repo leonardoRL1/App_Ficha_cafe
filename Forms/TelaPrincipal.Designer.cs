@@ -42,12 +42,14 @@
             // 
             btnHistorico.BackColor = Color.Sienna;
             btnHistorico.Dock = DockStyle.Fill;
+            btnHistorico.FlatAppearance.BorderSize = 0;
+            btnHistorico.FlatStyle = FlatStyle.Flat;
             btnHistorico.ForeColor = SystemColors.Window;
             btnHistorico.Location = new Point(400, 0);
             btnHistorico.Margin = new Padding(0);
             btnHistorico.Name = "btnHistorico";
             btnHistorico.Size = new Size(200, 145);
-            btnHistorico.TabIndex = 1;
+            btnHistorico.TabIndex = 3;
             btnHistorico.Text = "Histórico";
             btnHistorico.UseVisualStyleBackColor = false;
             btnHistorico.Click += btnMenu1_Click;
@@ -56,12 +58,14 @@
             // 
             btnRegistrar.BackColor = SystemColors.ButtonFace;
             btnRegistrar.Dock = DockStyle.Fill;
+            btnRegistrar.FlatAppearance.BorderSize = 0;
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.ForeColor = SystemColors.ControlText;
             btnRegistrar.Location = new Point(200, 0);
             btnRegistrar.Margin = new Padding(0);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(200, 145);
-            btnRegistrar.TabIndex = 1;
+            btnRegistrar.TabIndex = 2;
             btnRegistrar.Text = "Registrar\r\nConsumo";
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnMenu2_Click;
@@ -70,6 +74,8 @@
             // 
             btnRelatorios.BackColor = Color.Sienna;
             btnRelatorios.Dock = DockStyle.Fill;
+            btnRelatorios.FlatAppearance.BorderSize = 0;
+            btnRelatorios.FlatStyle = FlatStyle.Flat;
             btnRelatorios.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRelatorios.ForeColor = SystemColors.Window;
             btnRelatorios.Location = new Point(0, 0);
@@ -85,12 +91,14 @@
             // 
             btnCadProduto.BackColor = SystemColors.ButtonFace;
             btnCadProduto.Dock = DockStyle.Fill;
+            btnCadProduto.FlatAppearance.BorderSize = 0;
+            btnCadProduto.FlatStyle = FlatStyle.Flat;
             btnCadProduto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCadProduto.Location = new Point(600, 0);
             btnCadProduto.Margin = new Padding(0);
             btnCadProduto.Name = "btnCadProduto";
             btnCadProduto.Size = new Size(200, 145);
-            btnCadProduto.TabIndex = 1;
+            btnCadProduto.TabIndex = 4;
             btnCadProduto.Text = "Cadastrar\r\nProduto";
             btnCadProduto.UseVisualStyleBackColor = false;
             btnCadProduto.Click += btnMenu4_Click;
@@ -118,12 +126,14 @@
             // 
             // btnMenu
             // 
+            btnMenu.BackColor = SystemColors.Window;
+            btnMenu.FlatAppearance.BorderSize = 0;
             btnMenu.Location = new Point(309, 37);
             btnMenu.Name = "btnMenu";
             btnMenu.Size = new Size(180, 64);
-            btnMenu.TabIndex = 1;
+            btnMenu.TabIndex = 0;
             btnMenu.Text = "Menu";
-            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.UseVisualStyleBackColor = false;
             btnMenu.Click += button1_Click;
             // 
             // Menu
@@ -139,7 +149,6 @@
             MaximizeBox = false;
             Name = "Menu";
             Text = "Gerenciador de Fichas de Café";
-            Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             }

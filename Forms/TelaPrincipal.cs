@@ -8,11 +8,11 @@ namespace Ficha_cafe
         public Menu()
             {
             InitializeComponent();
+            this.FormClosed += Form_FormClosed;
             }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
             {
-
+            Application.Exit();
             }
 
         private void btnMenu1_Click(object sender, EventArgs e) // botao historico
