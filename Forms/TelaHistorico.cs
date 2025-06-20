@@ -32,11 +32,6 @@ namespace GFCafe.Forms
             this.Close();
         }
 
-        private void DataInicial_ValueChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             string nomeSelecionado = comboBoxNome.SelectedItem as string;

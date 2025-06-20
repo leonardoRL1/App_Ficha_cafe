@@ -13,23 +13,23 @@ namespace GFCafe.Repository
             }
 
         public IEnumerable<Produto> ReadProdutos()
-        {
+            {
             using var connection = MySqlConnectionFactory.Instance.CreateConnection();
             return connection.Query<Produto>("SELECT * FROM tbl_produtos");
-        }
+            }
 
         public bool UpdateProduto(Produto produto)
-        {
+            {
             using var connection = MySqlConnectionFactory.Instance.CreateConnection();
             var sql = "UPDATE tbl_produtos SET Nome = @Nome, Preco = @Preco, Estoque = @Estoque, ControlaEstoque = @ControlaEstoque WHERE Id = @Id";
             return connection.Execute(sql, produto) > 0;
-        }
+            }
 
         public bool DeleteProduto(int id)
-        {
+            {
             using var connection = MySqlConnectionFactory.Instance.CreateConnection();
             var sql = "DELETE FROM tbl_produtos WHERE Id = @Id";
             return connection.Execute(sql, new { Id = id }) > 0;
             }
-        } 
+    }
 }

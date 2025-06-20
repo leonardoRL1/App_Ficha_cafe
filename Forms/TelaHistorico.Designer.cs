@@ -160,7 +160,6 @@ namespace GFCafe.Forms
             DataInicial.ShowCheckBox = true;
             DataInicial.Size = new Size(118, 23);
             DataInicial.TabIndex = 3;
-            DataInicial.ValueChanged += DataInicial_ValueChanged;
             // 
             // labelFiltros
             // 
@@ -190,6 +189,7 @@ namespace GFCafe.Forms
             // 
             // comboBoxNome
             // 
+            comboBoxNome.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxNome.FormattingEnabled = true;
             comboBoxNome.Location = new Point(6, 224);
             comboBoxNome.Name = "comboBoxNome";
